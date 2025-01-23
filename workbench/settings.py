@@ -11,9 +11,6 @@ DJFS = {'type': 'osfs',
         'url_root': '/static/djpyfs'}
 
 DEBUG = True
-
-ALLOWED_HOSTS = ['*']
-
 if os.environ.get('EXCLUDE_SAMPLE_XBLOCKS') == 'yes':
     EXCLUDED_XBLOCKS = {
         'allscopes_demo',

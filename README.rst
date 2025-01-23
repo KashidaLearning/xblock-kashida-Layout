@@ -28,7 +28,7 @@ Getting Started
 Developing
 ==========
 
-This code runs on Python 3.11 or newer.
+This code runs on Python 3.8 or newer.
 
 One Time Setup
 --------------
@@ -40,7 +40,7 @@ One Time Setup
 
   # Set up a virtualenv with the same name as the repo and activate it
   # Here's how you might do that if you have virtualenvwrapper setup.
-  mkvirtualenv -p python3.11 xblock-sdk
+  mkvirtualenv -p python3.8 xblock-sdk
 
   # Install system requirements needed to run this on ubuntu.
   # Note: Debian 10 needs libjpeg62-turbo-dev instead of libjpeg62-dev.
@@ -62,8 +62,67 @@ Locally
 
 #.  Open a web browser to: http://127.0.0.1:8000
 
+Docker
+~~~~~~
+
+Alternatively, you can build and run the xblock-sdk in Docker (we are using docker-compose which
+can be installed as explained at https://docs.docker.com/compose/install/)
+
+After cloning this repository locally, go into the repository directory and build the Docker image::
+
+    $ make docker_build
+
+or manually run
+
+    $ docker-compose build
+
+You can then run the locally-built version using the following command::
+
+    $ make dev.up
+
+or manually run::
+
+    $ docker-compose up -d
+
+and stop the container (without removing data) by::
+
+    $ make dev.stop
+
+or manually run::
+
+    $ docker-compose stop
+
+Note, using::
+
+    $ make dev.down
+
+or::
+
+    $ docker-compose down
+
+will shut down the container and delete non-persistent data.
+
+On the first startup run the following command to create the SQLite database.
+(Otherwise you will get an error no such table: workbench_xblockstate.)
+
+Command::
+
+    $ docker container exec -it edx.devstack.xblock-sdk python3.8 manage.py migrate
+
+You should now be able to access the XBlock SDK environment in your browser at http://localhost:8000
+
+You can open a bash shell in the running container by using::
+
+    $ make app-shell
+
+or::
+
+    $ docker container exec -it edx.devstack.xblock-sdk bash
+
 Testing
 ~~~~~~~
+
+If using Docker, all these commands need to be run inside the xblock-sdk container.
 
 Testing is done via tox to test all supported versions:
 

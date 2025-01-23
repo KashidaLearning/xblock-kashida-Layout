@@ -4,22 +4,6 @@ Change history for XBlock SDK
 
 These are notable changes in XBlock.
 
-0.14.0 - 2024-12-16
--------------------
-
-* remove unsupported docker instructions, as part of https://github.com/openedx/public-engineering/issues/263
-
-0.13.0 - 2024-08-28
--------------------
-
-* upgraded to Ubuntu 24.04 and Python 3.12
-* replaced deprecated docker-compose command with docker compose
-
-0.12.0 - 2024-05-30
-------------------
-* dropped python 3.8 support
-* transitioned from deprecated pkg_resources lib to importlib.resources
-
 0.9.0
 -----
 * Xblock bumped to 3.0.0. Removed the deprecated id_generator method parameter in xblock.runtime
